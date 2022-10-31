@@ -28,3 +28,17 @@ services:
       KAFKA_JMX_PORT: 9101
       KAFKA_JMX_HOSTNAME: ${BROKER_HOSTNAME}
     env_file: .env
+    command: "/etc/confluent/docker/run"
+  packet-capture:
+    image: kafka-pcap:latest
+    network_mode: host
+    hostname: kafka-pcap
+    container_name: kafka-pcap
+    volumes:
+      - type: volume
+        source: pcap-capture
+        target: /pcap
+    environment:
+      PCAP_MAX_PACKET_COUNT: 10
+volumes:
+  pcap-capture:

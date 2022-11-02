@@ -6,7 +6,8 @@ RUN apt clean && \
     apt -y install \
     tcpdump
 
-RUN mkdir /pcap
-ADD packet-capture/* /pcap/
+RUN mkdir /pcap-src
+ADD packet-capture/* /pcap-src/
+CMD /pcap-src/capture.sh
 
-CMD /pcap/capture.sh
+VOLUME /pcap

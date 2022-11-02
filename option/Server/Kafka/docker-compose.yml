@@ -42,3 +42,4 @@ services:
       PCAP_MAX_PACKET_COUNT: 10
 volumes:
   pcap-capture:
+    external: true
